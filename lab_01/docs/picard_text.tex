@@ -1,0 +1,62 @@
+\subsection*{Приближённый аналитический метод Пикара}
+\begin{equation}\label{formula4}
+	\left\{
+	\begin{array}{ccc}
+		u'(x) = f(x, u),\\
+		u(\xi) = \eta\\
+	\end{array}
+	\right.
+\end{equation}
+
+\begin{equation}\label{formula5}
+	u(x) = \eta + \int\limits_\xi^x f(t, u(t))dt
+\end{equation}
+
+Получается, что
+\begin{equation}\label{formula6}
+	y^{(s)}(x) = \eta + \int\limits_\xi^x f(t, y^{(s - 1)}(t))dt
+\end{equation}
+
+\begin{equation}\label{formula7}
+	y^{(0)} = \eta
+\end{equation}
+
+Найдём 1, 2, 3 и 4 приближение для (\ref{formula1}).\\
+\begin{multline}\label{formula8}
+	\shoveright
+	{
+		y^{(1)} = 0 + \int\limits_0^x t^2dt = \frac{t^3}{3}\bigg|_0^x = \frac{x^3}{3}
+	}
+\end{multline}
+
+
+\begin{multline}\label{formula9}
+	\shoveright
+	{
+		y^{(2)} = 0 + \int\limits_0^x [(\frac{t^3}{3})^2 + t^2]dt = \frac{t^7}{63}\bigg|_0^x + \frac{t^3}{3}\bigg|_0^x = \frac{x^7}{63} + \frac{x^3}{3}
+	}
+\end{multline}
+
+\begin{multline}\label{formula10}
+	\shoveright
+	{
+	\begin{gathered}
+		y^{(3)} = 0 + \int\limits_0^x [(\frac{t^3}{3} + \frac{t^7}{63})^2 + t^2]dt = \frac{t^{15}}{15\cdot63^2}\bigg|_0^x + \frac{2\cdot t^{11}}{3\cdot63\cdot11}\bigg|_0^x + \frac{t^7}{63}\bigg|_0^x + \frac{t^3}{3}\bigg|_0^x = \\
+		= \frac{x^{15}}{59535} + \frac{2\cdot x^{11}}{2079} + \frac{x^7}{63} + \frac{x^3}{3}
+	\end{gathered}
+	}
+\end{multline}
+
+\begin{multline}\label{formula11}
+	\shoveright
+	{
+	\begin{gathered}
+		y^{(4)} = 0 + \int\limits_0^x [(\frac{t^{15}}{59535} + \frac{2\cdot t^{11}}{2079} + \frac{t^7}{63} + \frac{t^3}{3})^2 + t^2]dt
+		= \frac{x^{31}}{109 876 902 975} + \frac{4\cdot x^{27}}{3 341 878 155} + \\ + \frac{4\cdot x^{23}}{99 411 543} + \frac{2\cdot x^{23}}{86 266 215} + \frac{2\cdot x^{19}}{3 393 495} + \frac{4\cdot x^{19}}{2 488 563} + \frac{4\cdot x^{15}}{93 555} + \frac{x^{15}}{59 535} + \frac{2\cdot x^{11}}{2079} + \frac{x^7}{63} + \frac{x^3}{3}
+	\end{gathered}
+	}
+\end{multline}
+
+
+\subsection*{Метод Эйлера}
+\subsection*{Метод Рунге-Кутта}

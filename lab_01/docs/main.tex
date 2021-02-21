@@ -1,0 +1,93 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{setspace} % для междустрочного интервала
+\onehalfspacing % 1.5 интервал между строками
+
+\usepackage[left=30mm, top=20mm, right=20mm, bottom=20mm, nohead, footskip=7mm]{geometry}
+
+\usepackage{titlesec, blindtext, color} 
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Large\bfseries}{\thechapter{. }}{0pt}{\Large\bfseries}
+\titlespacing{\chapter}{-5pt}{-30pt}{12pt} % отступ заголовка сверху
+\titleformat{\section}[hang]{\large\bfseries}{\thesection{. }}{0pt}{\large\bfseries}
+
+\makeatletter % список литературы
+\def\@biblabel#1{#1. }
+\makeatother
+
+% Ссылки
+\usepackage{hyperref}
+
+% Возможность вставки pdf страниц
+\usepackage{pdfpages}
+
+% Листинги
+\usepackage{listings}
+
+% Для возможности переноса строк в equation, только надо еще и окружение \begin{gathered} сделать
+\usepackage{amsmath}
+
+\lstset{
+	language = c++,
+	extendedchars=\true,
+	basicstyle=\small\sffamily,
+	numbers=left,
+	numberstyle=\tiny,
+	stepnumber=1,
+	numbersep=5pt,
+	showspaces=false,            % показывать или нет пробелы специальными отступами
+	showstringspaces=false,
+	showtabs=false,
+	frame=single,
+	tabsize=2,
+	captionpos=t,
+	breaklines=true,
+	breakatwhitespace=false,
+	escapeinside={\#*}{*)},
+	keepspaces=true
+}
+
+% Чтобы вместо : в подписях было -
+\RequirePackage{caption}
+\DeclareCaptionLabelSeparator{defffis}{ — }
+\captionsetup{justification=centering,labelsep=defffis}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.9}
+
+
+
+
+\begin{document}
+	\renewcommand\bibname{Список литературы}
+	
+	\includepdf[pages=1]{title.pdf}
+	
+	\newpage
+	
+	\input{main_text.tex}
+	\input{picard_text.tex}
+	\newpage
+	
+%	\chapter{Аналитическая часть}
+	%\input{analytical_part.tex}
+%	\newpage
+	
+	
+%	\chapter*{Заключение}
+%	\input{conclusion.tex}
+%	\newpage
+	
+	\begin{thebibliography}{2}
+		\addcontentsline{toc}{chapter}{Список литературы}
+		\bibitem{Paral_methods}Иванов, К. К. Принципы разработки параллельных методов / К. К. Иванов, С. А. Раздобудько, Р. И. Ковалев. — Текст : непосредственный // Молодой ученый. — 2017. — № 3 (137). — С. 30-32. — URL: https://moluch.ru/archive/137/38412/ (дата обращения: 21.10.2020).
+		\bibitem{Kormen} Кормен, Томас Х. и др Алгоритмы: построение и анализ, 3-е изд. : Пер. с англ. - М. : ООО "И.Д. Вильямс", 2018. - 1328 с. : ил. - Парал. тит. англ. -  ISBN 978-5-8459-2016-4 (рус.).
+		\bibitem{thread} Документация по Стандартной библиотекн языка С++ thread [Электронный ресурс]. Режим доступа: https://docs.microsoft.com/ru-ru/cpp/standard-library/thread?view=vs-2019, свободный (дата обращения 22.10.2020)
+		\bibitem{mutex} Документация по Стандартной библиотекн языка С++ mutex [Электронный ресурс]. Режим доступа: https://docs.microsoft.com/ru-ru/cpp/standard-library/mutex?view=vs-2019, свободный (дата обращения 22.10.2020)
+		\bibitem{Visual} Документация по Visual Studio 2019 [Электронный ресурс]. Режим доступа: https://docs.microsoft.com/ru-ru/visualstudio/windows/?view=vs-2019, свободный (дата обращения: 21.10.2020)
+		\bibitem{Query} QueryPerformanceCounter function [Электронный ресурс]. Режим доступа: https://docs.microsoft.com/en-us/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter, свободный (дата обращения: 22.10.2020).
+	\end{thebibliography}
+\end{document}
