@@ -1,4 +1,6 @@
 # Метод Пикара, метод Эйлера, метод Рунге-Кутта
+from math import sqrt
+
 
 def f(x, y):
     return x ** 2 + y ** 2
@@ -47,14 +49,33 @@ def euler_explicit(x, y, h, num):
     for i in range(num):
         res.append([x, y])
 
-        y += h * f(x, y)
-        x += h
+        try:
+            y += h * f(x, y)
+            x += h
+        except OverFlowError:
+            for k in range(i, num):
+                res.append([x, '---'])
+            break
 
     return res
 
 
 def euler_implicit(x, y, h, num):
     res = []
+
+    for i in range(num):
+        res.append([x, y])
+
+        x += h
+        D = 1 - 4 * h * y - 4 * h ** 2 * x ** 2
+        if D < 0:
+            for k in range(i, n):
+                res.append([x, '---'])
+            break
+        y = (1 - sqrt(D)) / (2 * h)   # +sqrt(D)
+
+    return res
+
 
     
 
@@ -82,7 +103,8 @@ def main():
     h = 0.1
 
     print('Кутт', runge_kutta(x, y, h, 10))
-    print('Явный Эйлер', euler_explicit(x, y, h, 10))
+    print('Явный Эйлер ', euler_explicit(x, y, h, 10))
+    print('Мнимый Эйлер', euler_implicit(x, y, h, 10))
 
     for x in range(0, 10):
         print('{:9.3f}|{:7.3f}|{:7.3f}|{:7.3f}|{:7.3f}'.format(x,
