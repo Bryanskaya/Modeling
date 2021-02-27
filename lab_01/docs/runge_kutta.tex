@@ -1,0 +1,15 @@
+\subsection*{Метод Рунге-Кутта}
+Будем рассматривать метод второго порядка точности.
+\begin{equation}\label{formula13}
+y_{n + 1} = y_n + h[(1 - \alpha)k_1 + \alpha k_2],
+\end{equation}
+где 
+\begin{equation}\label{formula14}
+	\begin{gathered}
+		k_1 = f(x_n, y_n), \\
+		k_2 = f(x_n + \frac{h}{2\alpha}, y_n + \frac{h}{2\alpha}k_1), \alpha = \frac{1}{2} $ или $ \alpha = 1
+	\end{gathered}
+\end{equation}\\
+
+Реализация представлена на листинге \ref{code1}.\\
+

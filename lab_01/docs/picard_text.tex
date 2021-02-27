@@ -57,27 +57,24 @@
 	}
 \end{multline}
 
-
-\subsection*{Метод Эйлера}
-\subsection*{Метод Рунге-Кутта}
+Реализация представлена на листинге \ref{code1}.\\
 
 
+%\pgfplotstabletypeset[
+%col sep=comma,
+%string type,
+%columns/x/.style={column type={|c|}},
+%columns/7/.style={column type={c|}},
+%every head row/.style={before row=\hline, after row=\hline},
+%every last row/.style={after row=\hline},
+%]{result.csv}
 
-\pgfplotstabletypeset[
-col sep=comma,
-string type,
-columns/x/.style={column type={|c|}},
-columns/7/.style={column type={c|}},
-every head row/.style={before row=\hline, after row=\hline},
-every last row/.style={after row=\hline},
-]{result.csv}
+%\DTLsetseparator{,}      % разделитель ячеек
+%\DTLloaddb{satellites}{result.csv}
 
-\DTLsetseparator{,}      % разделитель ячеек
-\DTLloaddb{satellites}{result.csv}
-
-\begin{table}
-	\DTLdisplaydb{satellites}
-\end{table}
+%\begin{table}
+%	\DTLdisplaydb{satellites}
+%\end{table}
 
 
 
