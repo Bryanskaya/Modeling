@@ -66,34 +66,16 @@
 
 
 \begin{document}
-	\renewcommand\bibname{Список литературы}
-	
 	\includepdf[pages=1]{title.pdf}
-	
-	\newpage
 	
 	\input{task.tex}
 	\input{main_text.tex}
 	\input{picard_text.tex}
+	\input{euler_text.tex}
+	\input{runge_kutta.tex}
+	\input{table.tex}
+	\newpage
 	\input{questions.tex}
 	\newpage
-	
-%	\chapter{Аналитическая часть}
-	%\input{analytical_part.tex}
-%	\newpage
-	
-	
-%	\chapter*{Заключение}
-%	\input{conclusion.tex}
-%	\newpage
-	
-	\begin{thebibliography}{2}
-		\addcontentsline{toc}{chapter}{Список литературы}
-		\bibitem{Paral_methods}Иванов, К. К. Принципы разработки параллельных методов / К. К. Иванов, С. А. Раздобудько, Р. И. Ковалев. — Текст : непосредственный // Молодой ученый. — 2017. — № 3 (137). — С. 30-32. — URL: https://moluch.ru/archive/137/38412/ (дата обращения: 21.10.2020).
-		\bibitem{Kormen} Кормен, Томас Х. и др Алгоритмы: построение и анализ, 3-е изд. : Пер. с англ. - М. : ООО "И.Д. Вильямс", 2018. - 1328 с. : ил. - Парал. тит. англ. -  ISBN 978-5-8459-2016-4 (рус.).
-		\bibitem{thread} Документация по Стандартной библиотекн языка С++ thread [Электронный ресурс]. Режим доступа: https://docs.microsoft.com/ru-ru/cpp/standard-library/thread?view=vs-2019, свободный (дата обращения 22.10.2020)
-		\bibitem{mutex} Документация по Стандартной библиотекн языка С++ mutex [Электронный ресурс]. Режим доступа: https://docs.microsoft.com/ru-ru/cpp/standard-library/mutex?view=vs-2019, свободный (дата обращения 22.10.2020)
-		\bibitem{Visual} Документация по Visual Studio 2019 [Электронный ресурс]. Режим доступа: https://docs.microsoft.com/ru-ru/visualstudio/windows/?view=vs-2019, свободный (дата обращения: 21.10.2020)
-		\bibitem{Query} QueryPerformanceCounter function [Электронный ресурс]. Режим доступа: https://docs.microsoft.com/en-us/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter, свободный (дата обращения: 22.10.2020).
-	\end{thebibliography}
+	\input{listings.tex}
 \end{document}
