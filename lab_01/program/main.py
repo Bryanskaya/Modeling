@@ -119,8 +119,7 @@ def print_head():
           ' ' * 5 + '2' + ' ' * 5 + '|' + \
           ' ' * 5 + '3' + ' ' * 5 + '|' + \
           ' ' * 5 + '4' + ' ' * 5 + '|' + \
-          ' ' * 3 + 'Явный' + ' ' * 3 + '|' + \
-          ' ' * 2 + 'Неявный' + ' ' * 2 + '|' + \
+          ' ' * 9 + 'Явный' + ' ' * 9 + '|' + \
           '\n' + '̅ ' * 55)
 
 
@@ -135,31 +134,29 @@ def main():
 
     res_runge_kutta = runge_kutta(x, y, h, num)
     res_euler_explicit = euler_explicit(x, y, h, num)
-    res_euler_implicit = euler_implicit(x, y, h, num)
+    #res_euler_implicit = euler_implicit(x, y, h, num)
     res_picard_1 = picard_1(x_args)
     res_picard_2 = picard_2(x_args)
     res_picard_3 = picard_3(x_args)
     res_picard_4 = picard_4(x_args)
 
-    #f = open('results.csv', 'w')
+    f = open('results.csv', 'w')
     for i in range(num):
-        if not i % 1000:
-            print('{:9.3e}|{:11.3e}|{:11.3e}|{:11.3e}|{:11.3e}|{:11.3e}|{:11.3e}|{:11.3e}'.format(x_args[i],
-                                                                                              res_picard_1[i],
-                                                                                              res_picard_2[i],
-                                                                                              res_picard_3[i],
-                                                                                              res_picard_4[i],
-                                                                                              res_euler_explicit[i],
-                                                                                              res_euler_implicit[i],
-                                                                                              res_runge_kutta[i]))
-            '''f.write('{:9.3e},{:11.3e},{:11.3e},{:11.3e},{:11.3e},{:11.3e},{:11.3e},{:11.3e}\n'.format(x_args[i],
-                                                                                                  res_picard_1[i],
-                                                                                                  res_picard_2[i],
-                                                                                                  res_picard_3[i],
-                                                                                                  res_picard_4[i],
-                                                                                                  res_euler_explicit[i],
-                                                                                                  res_euler_implicit[i],
-                                                                                                  res_runge_kutta[i]))'''
+        if not i % 1800:
+            print('{:9.3e}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.2e}'.format(x_args[i],
+                                                                                      res_picard_1[i],
+                                                                                      res_picard_2[i],
+                                                                                      res_picard_3[i],
+                                                                                      res_picard_4[i],
+                                                                                      res_euler_explicit[i],
+                                                                                      res_runge_kutta[i]))
+            f.write('{:9.3e},{:11.2e},{:11.2e},{:11.2e},{:11.2e},{:11.2e},{:11.2e}\n'.format(x_args[i],
+                                                                                      res_picard_1[i],
+                                                                                      res_picard_2[i],
+                                                                                      res_picard_3[i],
+                                                                                      res_picard_4[i],
+                                                                                      res_euler_explicit[i],
+                                                                                      res_runge_kutta[i]))
 
 
 if __name__ == '__main__':
