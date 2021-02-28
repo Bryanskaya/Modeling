@@ -142,8 +142,8 @@ def main():
 
     f = open('results.csv', 'w')
     for i in range(len(x_args)):
-        #if not i % 100000:
-            print('{:}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.4f}'.format(x_args[i],
+        if not i % 50000: #100000
+            print('{:9.2f}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.4f}'.format(x_args[i],
                                                                                       res_picard_1[i],
                                                                                       res_picard_2[i],
                                                                                       res_picard_3[i],
