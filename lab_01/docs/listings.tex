@@ -79,22 +79,19 @@ def main():
 	print_head()
 	
 	x, x_max, y = 0, 2, 0
-	h = 10 ** -6 / 2
+	h = 10 ** -6
 	
-	num = int((x_max - x) / h)
 	x_args = count_x_args(x, x_max, h)
 	
 	res_runge_kutta = runge_kutta(x, y, h, num)
 	res_euler_explicit = euler_explicit(x, y, h, num)
-	res_euler_implicit = euler_implicit(x, y, h, num)
 	res_picard_1 = picard_1(x_args)
 	res_picard_2 = picard_2(x_args)
 	res_picard_3 = picard_3(x_args)
 	res_picard_4 = picard_4(x_args)
 	
-	for i in range(num):
-		if not i % 1000:
-			print('{:9.3e}|{:11.3e}|{:11.3e}|{:11.3e}|{:11.3e}|{:11.3e}|{:11.3e}'.format(x_args[i], res_picard_1[i], res_picard_2[i], res_picard_3[i], res_picard_4[i], res_euler_explicit[i], res_runge_kutta[i]))
+	for i in range(len(x_args)):
+		print('{:9.3f}|{:11.3e}|{:11.3e}|{:11.3e}|{:11.3e}|{:11.3e}|{:11.3e}'.format(x_args[i], res_picard_1[i], res_picard_2[i], res_picard_3[i], res_picard_4[i], res_euler_explicit[i], res_runge_kutta[i]))
 
 
 if __name__ == '__main__':
