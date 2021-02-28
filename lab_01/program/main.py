@@ -126,8 +126,8 @@ def print_head():
 def main():
     print_head()
 
-    x, x_max, y = 0, 2, 0
-    h = 10 ** -6 / 2
+    x, x_max, y = 0, 2 + 10e-5, 0
+    h = 10 ** -6
 
     num = int((x_max - x) / h)
     x_args = count_x_args(x, x_max, h)
@@ -141,16 +141,16 @@ def main():
     res_picard_4 = picard_4(x_args)
 
     f = open('results.csv', 'w')
-    for i in range(num):
-        if not i % 1800:
-            print('{:9.3e}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.2e}'.format(x_args[i],
+    for i in range(len(x_args)):
+        #if not i % 100000:
+            print('{:}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.4f}'.format(x_args[i],
                                                                                       res_picard_1[i],
                                                                                       res_picard_2[i],
                                                                                       res_picard_3[i],
                                                                                       res_picard_4[i],
                                                                                       res_euler_explicit[i],
                                                                                       res_runge_kutta[i]))
-            f.write('{:9.3e},{:11.2e},{:11.2e},{:11.2e},{:11.2e},{:11.2e},{:11.2e}\n'.format(x_args[i],
+            f.write('{:9.2f},{:11.2e},{:11.2e},{:11.2e},{:11.2e},{:11.2e},{:11.2e}\n'.format(x_args[i],
                                                                                       res_picard_1[i],
                                                                                       res_picard_2[i],
                                                                                       res_picard_3[i],
