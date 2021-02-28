@@ -1,19 +1,16 @@
-\subsection*{Результаты работы программы}
-Результаты представлены в таблице ниже (для наглядности выведен каждый 1800ый результат). \\
-
-\underline{Условные обозначения:}\\
-1 - метод Пикара 1е приближение,\\
-2 - метод Пикара 2е приближение,\\
-3 - метод Пикара 3е приближение,\\
-4 - метод Пикара 4е приближение,\\
-5 - метод Эйлера,\\
-6 - метод Рунге-Кутта\\
+\subsection*{Демонстрация работы программы}
+\qquadРезультаты работы программы на отрезке $[0; 2]$ с шагом $10^{-6}$ представлены в таблице ниже (для наглядности берётся х с шагом 0.1). \\
 
 \pgfplotstabletypeset[
 col sep=comma,
 string type,
-columns/x/.style={column type={|c|}},
-columns/6/.style={column type={c|}},
-every head row/.style={before row=\hline, after row=\hline},
+every head row/.style={before row={\hline & Метод & Метод & Метод & Метод & Метод & Метод\\ $x$ & Пикара & Пикара & Пикара & Пикара & Эйлера & Рунге-Кутта\\}, after row=\hline},
 every last row/.style={after row=\hline},
+columns/x/.style={column name=$ $, column type={|c|}},
+columns/1/.style={column name=(1 приб-е), column type={c|}},
+columns/2/.style={column name=(2 приб-е), column type={c|}},
+columns/3/.style={column name=(3 приб-е), column type={c|}},
+columns/4/.style={column name=(4 приб-е), column type={c|}},
+columns/5/.style={column name=$ $, column type={c|}},
+columns/6/.style={column name=$ $, column type={c|}},
 ]{results.csv}
