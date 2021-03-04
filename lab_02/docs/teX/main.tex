@@ -1,0 +1,77 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{setspace} % для междустрочного интервала
+\onehalfspacing % 1.5 интервал между строками
+
+\usepackage[left=30mm, top=20mm, right=20mm, bottom=20mm, nohead, footskip=7mm]{geometry}
+
+\usepackage{titlesec, blindtext, color} 
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Large\bfseries}{\thechapter{. }}{0pt}{\Large\bfseries}
+\titlespacing{\chapter}{-5pt}{-30pt}{12pt} % отступ заголовка сверху
+\titleformat{\section}[hang]{\large\bfseries}{\thesection{. }}{0pt}{\large\bfseries}
+
+\makeatletter % список литературы
+\def\@biblabel#1{#1. }
+\makeatother
+
+% Ссылки
+\usepackage{hyperref}
+
+% Возможность вставки pdf страниц
+\usepackage{pdfpages}
+
+% Листинги
+\usepackage{listings}
+
+% Для возможности переноса строк в equation, только надо еще и окружение \begin{gathered} сделать
+\usepackage{amsmath}
+
+\lstset{
+	language = c++,
+	extendedchars=\true,
+	basicstyle=\small\sffamily,
+	numbers=left,
+	numberstyle=\tiny,
+	stepnumber=1,
+	numbersep=5pt,
+	showspaces=false,            % показывать или нет пробелы специальными отступами
+	showstringspaces=false,
+	showtabs=false,
+	frame=single,
+	tabsize=2,
+	captionpos=t,
+	breaklines=true,
+	breakatwhitespace=false,
+	escapeinside={\#*}{*)},
+	keepspaces=true
+}
+
+% Чтобы вместо : в подписях было -
+\RequirePackage{caption}
+\DeclareCaptionLabelSeparator{defffis}{ — }
+\captionsetup{justification=centering,labelsep=defffis}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.9}
+
+
+\usepackage{csvsimple} %
+\usepackage{datatool}
+
+
+
+
+\begin{document}
+	\includepdf[pages=1]{title.pdf}
+	
+	\input{task.tex}
+	\input{main_text.tex}
+	\newpage
+	\input{questions.tex}
+	\newpage
+	\input{listings.tex}
+\end{document}
