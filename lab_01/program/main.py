@@ -126,23 +126,30 @@ def print_head():
 def main():
     print_head()
 
-    x, x_max, y = 0, 2 + 10e-5, 0
+    x, x_max, y = 0, 2, 0
     h = 10 ** -6
 
     num = int((x_max - x) / h)
     x_args = count_x_args(x, x_max, h)
 
     res_runge_kutta = runge_kutta(x, y, h, num)
-    res_euler_explicit = euler_explicit(x, y, h, num)
+    #res_euler_explicit = euler_explicit(x, y, h, num)
     #res_euler_implicit = euler_implicit(x, y, h, num)
     res_picard_1 = picard_1(x_args)
     res_picard_2 = picard_2(x_args)
     res_picard_3 = picard_3(x_args)
     res_picard_4 = picard_4(x_args)
 
+    print(num)
     f = open('results.csv', 'w')
-    for i in range(len(x_args)):
-        if not i % 50000: #100000
+    for i in range(num):
+        f.write('{:9.2f},{:11.2e},{:11.2e},{:11.2e},{:11.2e},{:11.2e}\n'.format(x_args[i],
+                                                                                res_picard_1[i],
+                                                                                res_picard_2[i],
+                                                                                res_picard_3[i],
+                                                                                res_picard_4[i],
+                                                                                res_runge_kutta[i]))
+        '''if not i % 50000: #100000
             print('{:9.2f}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.2e}|{:11.4f}'.format(x_args[i],
                                                                                       res_picard_1[i],
                                                                                       res_picard_2[i],
@@ -156,7 +163,8 @@ def main():
                                                                                       res_picard_3[i],
                                                                                       res_picard_4[i],
                                                                                       res_euler_explicit[i],
-                                                                                      res_runge_kutta[i]))
+                                                                                      res_runge_kutta[i]))'''
+
 
 
 if __name__ == '__main__':
