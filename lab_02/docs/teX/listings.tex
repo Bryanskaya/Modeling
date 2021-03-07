@@ -1,0 +1,165 @@
+\chapter*{Код программы}
+
+\begin{lstlisting}[label=code1, caption = Лабораторная работа №2]
+from math import *
+import matplotlib.pyplot as plt
+
+table_I = [0.5, 1, 5, 10, 50, 200, 400, 800, 1200]
+table_T0 = [6730, 6790, 7150, 7270, 8010, 9185, 10010, 11140, 12010]
+table_m = [0.5, 0.55, 1.7, 3, 11, 32, 40, 41, 39]
+table_T = [4000,5000,6000,7000,8000,9000,10000,11000,12000,13000,14000]
+table_sigma = [0.031,0.27,2.05,6.06,12,19.9,29.6,41.1,54.1,67.7,81.5]
+
+R = 0.35
+le = 12
+Lk = 187 * 10 ** (-6)
+Ck = 268 * 10 ** (-6)
+Rk = 0.25
+Tw = 2000
+
+T0 = 0
+Rp = 0
+
+res_I = []
+res_U = []
+res_t = []
+res_Rp = []
+res_IRp = []
+res_T0 = []
+
+def find_sigma(z, I, Tw):
+	t0 = interpolation(I, 2, table_I, table_T0)
+	global T0
+	T0 = t0
+	m = interpolation(I, 2, table_I, table_m)
+	T = T0 + (Tw - T0) * z ** m
+	sigma = interpolation(T, 2, table_T, table_sigma)
+	return sigma
+
+def find_Rp(I, Tw):
+	a, b = 0, 1
+	n = 100
+	dz = (b - a) / n
+	intgr = 0
+	z = 0
+	
+	for j in range(n):
+		intgr += z * dz * find_sigma(z, I, Tw)
+		z += dz
+	
+	return le / (2 * pi * R * R * intgr)
+
+def f(I, U):
+	global Rp
+	Rp = find_Rp(I, Tw)
+	return (U - (Rk + Rp) * I) / Lk
+
+def phi(I):
+	return -I / Ck
+
+def find_I_U(I, U, h):
+	k1 = h * f(I, U)
+	p1 = h * phi(I)
+	
+	k2 = h * f(I + k1 / 2, U + p1 / 2)
+	p2 = h * phi(I + k1 / 2)
+	
+	k3 = h * f(I + k2 / 2, U + p2 / 2)
+	p3 = h * phi(I + k2 / 2)
+	
+	k4 = h * f(I + k3, U + p3)
+	p4 = h * phi(I + k3)
+	
+	return I + 1 / 6 * (k1 + 2 * k2 + 2 * k3 + k4), \
+		U + 1 / 6 * (p1 + 2 * p2 + 2 * p3 + p4)
+
+def find_position(x, data_x, number):
+	left = 0
+	right = number - 1
+	
+	if data_x[0] < data_x[-1]:
+		if x < data_x[left] or x > data_x[right]: return -1
+		while left + 1 != right:
+			pos_x = int((left + right)/2)
+			if data_x[pos_x] <= x:
+				left = pos_x
+			else:
+				right = pos_x
+		return left
+	else:
+		if x < data_x[right] or x > data_x[left]: return -1
+		while left + 1 != right:
+			pos_x = int((left + right)/2)
+			if data_x[pos_x] >= x:
+				left = pos_x
+			else:
+				right = pos_x
+		return left
+
+def find_range(pos_x, degree, data_x, data_y, number):
+	half = int(degree / 2)
+	left = pos_x - half
+	right = pos_x + (degree - half)
+	if left < 0:
+		right += -left
+		left = 0
+	elif right > number - 1:
+		left -= right - (number - 1)
+		right = number - 1
+	
+	return data_x[left: right + 1], data_y[left: right + 1]
+
+def find_polynomial(degree, nodes_x, nodes_y):
+	div_diff, old_arr = [0] * (degree + 1), nodes_y
+	new_arr = [0] * degree
+	
+	div_diff[0] = old_arr[0]
+	for i in range(degree):
+		for j in range(degree - i):
+			new_arr[j] = (old_arr[j] - old_arr[j+1]) / \
+			(nodes_x[j] - nodes_x[j+i+1])
+		div_diff[i+1] = new_arr[0]
+		old_arr = new_arr
+	
+	return lambda x: nwtn_polynom(x, degree, div_diff, nodes_x)
+
+def nwtn_polynom(x, degree, div_diff, nodes_x):
+	y = div_diff[0]
+	x_pl = 1
+	for i in range(1, degree + 1):
+		x_pl *= (x - nodes_x[i-1])
+		y += x_pl * div_diff[i]
+	return y
+
+def interpolation(x, degree, data_x, data_y):
+	pos = find_position(x, data_x, len(data_x))
+	nodes_x, nodes_y = find_range(pos,degree,data_x, data_y, len(data_x))
+	f = find_polynomial(degree, nodes_x, nodes_y)
+	return f(x)
+
+def show_graph():
+	/* Построение графиков */
+
+def main():
+	Uc = 1400
+	I, t = 0, 0
+	h = 10 ** (-7)
+	
+	while t < 1.5 * 10 ** (-3):
+		I, Uc = find_I_U(I, Uc, h)
+		t += h
+		
+		res_I.append(I)
+		res_U.append(Uc)
+		res_t.append(t)
+		res_T0.append(T0)
+		res_Rp.append(Rp)
+	
+	for i in range(len(res_Rp)):
+		res_IRp.append(res_I[i] * res_Rp[i])
+	
+	show_graph()
+
+if __name__ == '__main__':
+	main()
+\end{lstlisting}
