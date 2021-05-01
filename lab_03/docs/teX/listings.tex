@@ -122,7 +122,6 @@ def do_balance():
 	for i in range(N):
 		t_balanced[i] += k_relax * (t[i] - t_balanced[i])
 
-
 def main():
 	global t
 	init_t_values(2400, 1600)
@@ -134,9 +133,7 @@ def main():
 		t_old, t = t, t2
 		if energy_check(j) and temperature_check(t_old, t):
 			break
-		
 		do_balance()
-	
 	draw_graphs()
 
 
