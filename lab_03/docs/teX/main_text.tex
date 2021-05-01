@@ -1,0 +1,53 @@
+\chapter*{Выполнение}
+
+Задача решается методом разностной аппроксимации.
+
+Обозначим выражение потока как
+\begin{equation}\label{flow}
+	F = \lambda(T)\frac{dT}{dx}
+\end{equation}
+
+Тогда $F_{n+1/2}$ может быть получен использованием интегрирования (\ref{flow}) на интервале $[x_n, x_{n+1}]$ и применением метода средних справа:
+\begin{equation}
+	F_{n+1/2} = \chi_{n+1/2} \dfrac{t_{n} - t_{n+1}}{h}
+\end{equation}
+где
+\begin{equation}
+	\chi_{n+1/2} = \dfrac{\lambda_{n} + \lambda_{n+1}}{2} \\
+\end{equation}
+Аналогичным образом выражается и $F_{n-1/2}$. 
+
+
+Приближённое интегрирование (\ref{formula1}) на интервале $[x_{n-1/2}, x_{n+1/2}]$ даёт:
+\begin{equation}\label{main_eq_integr}
+	-(F_{n+1/2} - F_{n-1/2}) - p_n t_n h + f_nh = 0
+\end{equation}
+где
+\begin{equation}\label{fp_eq}
+	\begin{cases}
+		p_n = p(x_n) = 0 \\ 
+		f_n = f(x_n) = -4 \cdot k(t_n) \cdot n_{p}^{2} \cdot \sigma \cdot (t_n^4 - T_0^4)\\
+	\end{cases}
+\end{equation}
+
+Полученное уравнение использовано для составления разностной схемы для $1 \leq n \leq N-1$ :
+\begin{equation}
+	\begin{cases}
+		A_n t_{n-1} - B_n t_{n} + C_n t_{n+1} = -D_n \\
+		A_n = \frac{\chi_{n-1/2}}{2} \\
+		C_n = \frac{\chi_{n+1/2}}{2} \\
+		B_n = A_n + C_n \\
+		D_n = f_nh
+	\end{cases}
+\end{equation}
+
+Также получаются разностные схемы в краевых точках $n = 0$ и $n = N$. Решение выводится при помощи простой правой прогонки в несколько итераций. В качестве значений температуры в выражениях используется результат предыдущей итерации (с применением релаксации). Начальное распределение $t_n^0$ задаётся как $T_0$. Выход из итераций организован по температуре и балансу энергии:
+\begin{equation}
+	max|\dfrac{t_n^{s} - t_n^{s-1}}{t_n^{s}}| \leq \varepsilon_{1}, \forall n = 0, 1, ... N.
+\end{equation}
+и
+\begin{equation}
+	max|\dfrac{f_1^{s} - f_2^{s}}{f_1^{s}}| \leq \varepsilon_{2},
+\end{equation}
+где $f_1$ и $f_2$ заданы формулами (\ref{formula5}) и (\ref{formula6}) соответственно. \\
+
