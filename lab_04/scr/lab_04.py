@@ -4,7 +4,7 @@ a1 = 0.0134
 b1 = 1
 c1 = 4.35e-4
 m1 = 1
-a2 = 2.049
+a2 = 2.049 #* 20
 b2 = 0.563e-3
 c2 = 0.528e5
 m2 = 1
@@ -16,7 +16,7 @@ R = 0.5
 Fс = -15
 
 tau = 0.01
-step = 0.1
+step = 0.1 #/ 2
 N = round(l / step) + 1
 eps = 1e-3
 
@@ -148,14 +148,15 @@ def draw(x_arr, t_arr, temp_arr, step):
     temp.append(temp_arr[-1])
 
     for i in range(len(t)):
-        plt.plot(x,
-                 temp[i],
-                 label="{:.2f} с".format(t[i]))
-        plt.grid()
+        #if i % 2 == 0:
+            plt.plot(x,
+                     temp[i],
+                     label="{:.2f} с".format(t[i]))
+            plt.grid()
 
     plt.xlabel("x, см")
     plt.ylabel("T, K")
-    #plt.legend()
+    plt.legend()
     plt.show()
 
 def draw_2(x_arr, t_arr, temp_arr, x_t):
@@ -164,8 +165,8 @@ def draw_2(x_arr, t_arr, temp_arr, x_t):
     for i in range(len(x_arr)):
         if x_arr[i] + step / 2 > x_t[x_ind]:
             plt.plot(t_arr,
-                     [tmp[i] for tmp in temp_arr])#,
-                     #label="{:.2f} см".format(x_arr[i]))
+                     [tmp[i] for tmp in temp_arr],
+                     label="{:.2f} см".format(x_arr[i]))
             plt.grid()
 
             x_ind += 1
