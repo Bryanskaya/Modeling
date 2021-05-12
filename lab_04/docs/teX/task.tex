@@ -1,0 +1,71 @@
+\chapter*{Задание}
+
+\textbf{Тема. } Программно-алгоритмическая реализация моделей на основе дифференциальных уравнений в частных производных с краевыми условиями II и III рода.\\
+
+\textbf{Цель работы. } Получение навыков разработки алгоритмов решения смешанной краевой
+задачи при реализации моделей, построенных на квазилинейном уравнении
+параболического типа. \\
+
+\textbf{Исходные данные. }\\
+\begin{enumerate}
+	\item Задана математическая модель. \\
+	Уравнение для функции T(x, t)
+	
+	\begin{equation}\label{formula1}
+		c(T)\frac{\partial T}{\partial t} = \frac{\partial}{\partial x}\big(k(T)\frac{\partial T}{\partial x}\big) - \frac{2}{R}\alpha(x)T + \frac{2T_0}{R}\alpha(x)
+	\end{equation}
+
+	Краевые условия:
+	\begin{equation}\label{formula2}
+		\left\{
+		\begin{array}{ccc}
+			t = 0, T(x,0) = T_0,\\
+			x = 0, -k(T(0))\frac{\partial T}{\partial x} = F_0, \\
+			x = l, -k(T(l))\frac{\partial T}{\partial x} = \alpha_N(T(l) - T_0) \\
+		\end{array}
+		\right.
+	\end{equation}
+
+	В обозначениях уравнения лекции
+	\begin{equation}\label{formula3}
+		p(x) = \frac{2}{R}\alpha(x)
+	\end{equation}
+
+	\begin{equation}\label{formula4}
+		f(u) = f(x) = \frac{2T_0}{R}\alpha(x)
+	\end{equation}
+
+	\item Разностная схема с разностным краевым условием при $x = 0$ получена в Лекции и может быть использована в данной работе. Самостоятельно надо получить интегроинтерполяционным  методом разностный аналог краевого условия при $x = l$, точно так же, как это сделано при $x = 0$. Для этого надо проинтегрировать на отрезке $[x_{N-1/2}, x_N]$ выписанное выше уравнение \ref{formula1} и учесть, что поток $\hat{F}_N = \alpha_N(\hat{y}_N - T_0)$, а $\hat{F}_{N-1/2} = \hat{\chi}_{N-1/2}\frac{\hat{y}_{N-1} - \hat{y}_N}{h}$.
+
+	\item Значения параметров для отладки (все размерности согласованы)
+	\begin{equation*}\label{formula5}
+		k(T) = a_1(b_1 + c_1T^{m_1})
+	\end{equation*}
+	\begin{equation*}\label{formula6}
+		c(T) = a_2 + b_2T^{m_2} - \frac{c_2}{T^2}
+	\end{equation*}
+	\begin{equation*}\label{formula7}
+		a_1 = 0.0134, b_1 = 1, c_1 = 4.35\cdot10^{-4}, m_1 = 1
+	\end{equation*}
+	\begin{equation*}\label{formula8}
+		a_2 = 2.049, b_2 = 0.563\cdot10^{-3}, c_2 = 0.528\cdot10^5, m_2 = 1
+	\end{equation*}
+	\begin{equation*}\label{formula9}
+		\alpha(x) = \frac{c}{x-d}
+	\end{equation*}
+		
+	$\alpha_0 = 0.05$ Вт/см2 К,	\\
+	$\alpha_N = 0.01$ Вт/см2 К, \\
+	$l = 10$ см, \\
+	$T_0 = 300$ K, \\
+	$R = 0.5$ см, \\
+	$F(t) = 50$ Вт/см2 (для отладки принять постоянным).
+	
+\end{enumerate}
+
+
+
+
+
+
+

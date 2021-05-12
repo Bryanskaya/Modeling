@@ -1,0 +1,28 @@
+\chapter*{Выполнение}
+
+Задача решается интегро-интерполяционным методом.
+
+Выбирается шаблон и связанная с шаблоном ячейка. Далее проводится интегрирование уравнения (\ref{formula1}). В результате нескольких преобразований получается следующее:
+\begin{equation}\label{formula10}
+	\hat{c}_n(\hat{t}_n - t_n)h = \tau(\hat{F}_{n - 1/2} - \hat{F}_{n + 1/2}) - p_n\hat{t}_n\tau h + \hat{f}_n \tau h
+\end{equation}
+С учётом формул (\ref{formula3}) и (\ref{formula4}) получаются такие выражения:
+\begin{equation}\label{formula11}
+	\begin{cases}
+	\hat{F}_{n+1/2} = \hat{\chi}_{n+1/2} \dfrac{\hat{t}_{n} - \hat{t}_{n+1}}{h} \\ 
+	\hat{F}_{n-1/2} = \hat{\chi}_{n-1/2} \dfrac{\hat{t}_{n-1} - \hat{t}_{n}}{h} \\
+	\end{cases}
+\end{equation}
+
+Следующий шаг для 1ого уравнения:
+\begin{equation}\label{formula12}
+		\hat{\chi}_{n+1/2} = \dfrac{\hat{k}_n + \hat{k}_{n+1}}{2} \\
+\end{equation}
+
+Аналогично для 2ого.\\
+Затем полученные выражения подставляются в (\ref{formula10}), которое далее приводится к виду:
+\begin{equation*}
+	\hat{A_n} \hat{t}_{n-1} - \hat{B_n} \hat{t}_{n} + \hat{D_n} \hat{t}_{n+1} = -F_n
+\end{equation*}
+
+И применяется метод простой прогонки.
