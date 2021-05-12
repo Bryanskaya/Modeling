@@ -25,7 +25,7 @@
 		\tau \frac{h}{4}(\hat{f}_{N} + \hat{f}_{N-1/2})
 	\end{align*}
 	
-	Учитывая краевые условия:
+	Учитывая правое краевое условие:
 	\begin{multline*}
 		\frac{h}{4}\big(\hat{c}_N (\hat{T}_N - T_N) + \hat{c}_{N-1/2} (\hat{T}_{N-1/2} - T_{N-1/2})\big)
 		= \\
@@ -40,9 +40,11 @@
 	Приводим к форме $\hat{K}_N \hat{T}_{N} + \hat{M}_{N-1} \hat{T}_{N-1} = \hat{P}_N$.
 	\begin{equation*}
 		\begin{cases}
-			K_N = \dfrac{h}{8}(2\hat{c}_N + \hat{c}_{N-1/2}) + \dfrac{h\tau}{8}(2p_N + p_{N-1/2}) + \tau(\alpha_N - \dfrac{\hat{\chi}_{N-1/2}}{h}) \\
-			M_N = \dfrac{h}{8}\hat{c}_{N-1/2} + \dfrac{h\tau}{8}p_{N-1/2} - \tau\dfrac{\hat{\chi}_{N-1/2}}{h} \\ 
-			P_N = \dfrac{h}{4}(\hat{c}_N T_N + \hat{c}_{N-1/2} \dfrac{T_N + T_{N-1}}{2}) + \dfrac{h \tau}{4} (\hat{f}_{N} + \hat{f}_{N-1/2}) +  \tau \alpha_N T0\\
+			\hat{M}_N = \dfrac{h}{8}\big(\hat{c}_{N-1/2} + \tau p_{N-1/2}\big) - \tau\dfrac{\hat{\chi}_{N-1/2}}{h} \\
+				
+			\hat{K}_N = \dfrac{h}{8}\big(2\hat{c}_N + \hat{c}_{N-1/2} + 2p_N\tau + \tau p_{N-1/2}\big) + \tau(\alpha_N - \dfrac{\hat{\chi}_{N-1/2}}{h}) \\
+		 
+			\hat{P}_N = \dfrac{h}{4}\big(\hat{c}_N T_N + \hat{c}_{N-1/2} \dfrac{T_N + T_{N-1}}{2} + \tau \hat{f}_{N} + \tau \hat{f}_{N-1/2}\big) + \tau \alpha_N T_0\\
 		\end{cases}
 	\end{equation*}
 	
