@@ -29,4 +29,5 @@ u(0) = 0
 
 # Лабораторная работа №4
 
+[Задание на лабораторную работу](https://github.com/Bryanskaya/Modeling/blob/main/lab_04/docs/11-04-2021-%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5_%D0%BD%D0%B0_%D0%BB%D0%B0%D0%B1_%D1%80%D0%B0%D0%B1__4.pdf)
 ---
